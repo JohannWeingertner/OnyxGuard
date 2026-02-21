@@ -9,14 +9,14 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $OnyxGuard                       = New-Object system.Windows.Forms.Form
-$OnyxGuard.ClientSize            = New-Object System.Drawing.Point(1000,700)
+$OnyxGuard.ClientSize            = New-Object System.Drawing.Point(1100,850)
 $OnyxGuard.text                  = "OnyxGuard"
 $OnyxGuard.TopMost               = $false
 $OnyxGuard.BackColor             = [System.Drawing.ColorTranslator]::FromHtml("#FAFAFC ")
 
 $HeaderPanel                     = New-Object system.Windows.Forms.Panel
 $HeaderPanel.height              = 115
-$HeaderPanel.width               = 1000
+$HeaderPanel.width               = 1100
 $HeaderPanel.Anchor              = 'top,right,left'
 $HeaderPanel.location            = New-Object System.Drawing.Point(0,-1)
 $HeaderPanel.BackColor           = [System.Drawing.ColorTranslator]::FromHtml("#003366")
@@ -41,13 +41,46 @@ $ByText.ForeColor                = [System.Drawing.ColorTranslator]::FromHtml("#
 
 $SubPanel                        = New-Object system.Windows.Forms.Panel
 $SubPanel.height                 = 6
-$SubPanel.width                  = 1000
+$SubPanel.width                  = 1100
 $SubPanel.Anchor                 = 'top,right,left'
 $SubPanel.location               = New-Object System.Drawing.Point(0,114)
 $SubPanel.BackColor              = [System.Drawing.ColorTranslator]::FromHtml("#0056B3 ")
 
 $OnyxGuard.controls.AddRange(@($HeaderPanel,$SubPanel))
 $HeaderPanel.controls.AddRange(@($Title,$ByText))
+
+
+$TabControl = New-Object System.Windows.Forms.TabControl
+$TabControl.Location = New-Object System.Drawing.Point(20, 140)
+$TabControl.Size = New-Object System.Drawing.Size(1060, 690)
+$TabControl.Font = New-Object System.Drawing.Font('Segoe UI', 10)
+$TabControl.Anchor = 'Top, Bottom, Left, Right'
+
+$TabPage1 = New-Object System.Windows.Forms.TabPage
+$TabPage1.Text = "Dashboard"
+$TabPage1.BackColor = [System.Drawing.ColorTranslator]::FromHtml("#FAFAFC")
+
+$TabPage2 = New-Object System.Windows.Forms.TabPage
+$TabPage2.Text = "Configuration"
+$TabPage2.BackColor = [System.Drawing.ColorTranslator]::FromHtml("#FAFAFC")
+
+$TabPage3 = New-Object System.Windows.Forms.TabPage
+$TabPage3.Text = "Threat Hunting"
+$TabPage3.BackColor = [System.Drawing.ColorTranslator]::FromHtml("#FAFAFC")
+
+
+$DashboardLabel = New-Object System.Windows.Forms.Label
+$DashboardLabel.Text = "Welcome to OnyxGuard Dashboard"
+$DashboardLabel.Location = New-Object System.Drawing.Point(20, 20)
+$DashboardLabel.AutoSize = $true
+$DashboardLabel.Font = New-Object System.Drawing.Font('Segoe UI', 14, [System.Drawing.FontStyle]::Bold)
+$TabPage1.Controls.Add($DashboardLabel)
+
+
+
+$TabControl.TabPages.AddRange(@($TabPage1, $TabPage2, $TabPage3))
+
+$OnyxGuard.Controls.Add($TabControl)
 
 
 
